@@ -50,3 +50,27 @@ body {
     background-color: #888;
     cursor: not-allowed;
 }
+
+/* Add transition for a smooth zoom */
+#bubble-container.zoom-in {
+    transform: scale(1.5); /* Scale the entire container */
+    transition: transform 0.5s ease-in-out;
+    justify-content: center;
+}
+
+/* Style the bubbles when zoomed-in */
+#bubble-container.zoom-in .bubble {
+    opacity: 0; /* Hide all bubbles initially */
+    transition: opacity 0.5s;
+}
+
+#bubble-container.zoom-in .bubble.active {
+    opacity: 1; /* Only the active bubbles are visible */
+}
+
+/* Adjust back button position */
+#back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}

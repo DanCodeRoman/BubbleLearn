@@ -1,4 +1,4 @@
-// Topics for each subject
+// Topics for each subject (subtopics)
 const topics = {
     math: ["Algebra", "Calculus", "Geometry", "Statistics", "Trigonometry", "Linear Algebra", "Differential Equations", "Pre-Calculus", "Probability", "Mathematical Proofs"],
     chemistry: ["Organic Chemistry", "Inorganic Chemistry", "Physical Chemistry", "Biochemistry", "Analytical Chemistry", "Environmental Chemistry", "Thermodynamics", "Chemical Bonding", "Stoichiometry", "Atomic Theory"],
@@ -7,14 +7,14 @@ const topics = {
     history: ["World History", "U.S. History", "European History", "Ancient Civilizations", "Modern History", "History of Science", "Military History", "Political History", "Cultural History", "Economic History"]
 };
 
-// Function to handle bubble click
+// Handle bubble click (zoom-in, show subtopics, change background)
 document.querySelectorAll('.bubble').forEach(bubble => {
     bubble.addEventListener('click', function () {
         zoomIn(bubble);
     });
 });
 
-// Function to zoom in and show topics
+// Zoom-in function and show subtopics
 function zoomIn(bubble) {
     const subject = bubble.id;
     
@@ -22,7 +22,7 @@ function zoomIn(bubble) {
     document.querySelector('.container').style.display = 'none';
     document.getElementById('backButton').style.display = 'block';
     
-    // Change background color based on subject
+    // Change background color based on the subject
     const backgrounds = {
         math: 'linear-gradient(135deg, #b0b0b0, #ff4d4d)', // Grey Red
         chemistry: 'linear-gradient(135deg, #b0b0b0, #4d88d7)', // Grey Blue
@@ -31,25 +31,25 @@ function zoomIn(bubble) {
         history: 'linear-gradient(135deg, #b0b0b0, #7e4d28)' // Grey Brown
     };
 
-    // Apply new background gradient
+    // Apply the background gradient for the clicked subject
     document.body.style.background = backgrounds[subject];
 
     // Make the clicked bubble larger
     bubble.classList.add('expanded');
 
-    // Create spider lines and subtopics
+    // Create spider lines and sub-bubbles
     createSpiderLines(subject);
 }
 
-// Function to create spider lines and subtopics
+// Create spider lines and subtopics
 function createSpiderLines(subject) {
     const spider = document.getElementById('spider');
-    spider.style.display = 'block';
-    spider.innerHTML = ''; // Clear previous lines
+    spider.style.display = 'block';  // Make the spider container visible
+    spider.innerHTML = ''; // Clear any existing lines or bubbles
 
     const bubble = document.querySelector(`#${subject}`);
 
-    // Create 10 lines extending from the clicked bubble
+    // Create 10 spider lines extending from the clicked bubble
     const angleIncrement = 360 / 10;
     for (let i = 0; i < 10; i++) {
         const angle = i * angleIncrement;
@@ -62,7 +62,7 @@ function createSpiderLines(subject) {
         subBubble.innerText = topics[subject][i];
         spider.appendChild(subBubble);
 
-        // Position the line and subBubble
+        // Position the line and subBubble using angle and trigonometry
         const angleRad = angle * (Math.PI / 180);
         const x = 200 * Math.cos(angleRad);
         const y = 200 * Math.sin(angleRad);
@@ -72,20 +72,20 @@ function createSpiderLines(subject) {
 
         // Set the line height and subBubble opacity
         setTimeout(() => {
-            line.style.height = '200px';
-            subBubble.style.opacity = 1;
+            line.style.height = '200px'; // Set line height after animation starts
+            subBubble.style.opacity = 1;  // Make subBubble appear smoothly
         }, 50);
     }
 }
 
-// Function to handle the back button click
+// Go back to the main page
 function goBack() {
-    // Reset everything to original state
+    // Reset everything to the original state
     document.querySelector('.container').style.display = 'flex';
     document.getElementById('backButton').style.display = 'none';
-    document.body.style.background = 'linear-gradient(135deg, #d3d3d3, #6e7f80)'; // Grey-Blue
+    document.body.style.background = 'linear-gradient(135deg, #d3d3d3, #6e7f80)'; // Default Grey-Blue gradient
 
-    // Remove the expanded class and reset spider lines
+    // Remove the expanded class from all bubbles and hide spider lines
     document.querySelectorAll('.bubble').forEach(bubble => {
         bubble.classList.remove('expanded');
     });

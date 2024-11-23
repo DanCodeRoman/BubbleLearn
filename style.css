@@ -1,195 +1,84 @@
-/* General Body and Layout Styling */
+/* General Body and Layout */
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #d3d3d3, #6e7f80); /* Default Grey-Blue gradient */
-    transition: background 0.5s ease; /* Smooth background transition */
-}
-
-/* Back Button Styling */
-#backButton {
-    display: none; /* Hidden initially */
-    font-size: 20px;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: transparent;
-    border: none;
-    color: black;
-    cursor: pointer;
-    z-index: 10;
-    transition: opacity 0.3s ease;
-}
-
-#backButton:hover {
-    color: #888;
-}
-
-/* Container for the home page bubbles */
-.container {
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    position: relative;
-}
-
-/* Styling for the 5 subject bubbles */
-.bubble {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin: 20px;
-    background-color: white;
-    border: 3px solid black;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
-    cursor: pointer;
-    transition: transform 0.3s ease, font-size 0.3s ease;
-}
-
-/* Hover effect on bubbles */
-.bubble:hover {
-    transform: scale(1.1); /* Slight expand on hover */
-}
-
-/* Styling for the clicked (expanded) bubble */
-.bubble.expanded {
-    transform: scale(1.5); /* Larger size for the clicked bubble */
-    font-size: 30px; /* Bigger text when expanded */
-    position: absolute;     /* Absolute positioning for centering */
-    z-index: 5;
-}
-
-/* Spider lines container */
-.spider {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none; /* Initially hidden */
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-}
-
-/* Styling for the lines connecting the central bubble to the subtopics */
-.line {
-    position: absolute;
-    width: 2px;
-    background-color: black;
-    height: 0; /* Initially, lines have zero height */
-    transition: height 0.5s ease-in-out;
-}
-
-/* Subtopic bubbles */
-.subBubble {
-    position: absolute;
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    font-weight: bold;
-    opacity: 0; /* Initially, subtopics are invisible */
-    transition: opacity 0.7s ease;
-}
-/* Smooth transitions for all elements */
-.bubble, .subBubble, .line {
-    transition: all 0.3s ease;
-}
-/* Show subtopics when they appear */
-.subBubble.show {
-    opacity: 1;
-}
-/* Positioning for subbubbles */
-.subBubble {
-    position: absolute; /* Positioned relative to the center bubble */
-    opacity: 0;         /* Hidden initially */
-    transition: opacity 0.5s ease; /* Smooth fade-in */
-}
-/* Home Page: Default gradient background */
-body {
-    background: linear-gradient(135deg, #d3d3d3, #6e7f80);
-}
-/* When the subbubble appears, make it visible */
-.subBubble.show {
-    opacity: 1;
-}
-/* Lines extending from the central bubble to the subbubbles */
-.line {
-    position: absolute;
-    background-color: black;
-    width: 2px;
-    height: 0; /* Line starts at height 0 */
-    transition: height 0.5s ease-in-out; /* Smooth animation for line height */
-}
-/* Spider lines animation */
-.spider .line {
-    height: 0;
-    opacity: 0;
-}
-/* Specific background color per subject */
-.mathBackground {
-    background: linear-gradient(135deg, #b0b0b0, #ff4d4d); /* Grey Red */
-}
-
-.chemistryBackground {
-    background: linear-gradient(135deg, #b0b0b0, #4d88d7); /* Grey Blue */
-}
-
-.biologyBackground {
-    background: linear-gradient(135deg, #b0b0b0, #4d9e7e); /* Grey Green */
-}
-
-.physicsBackground {
-    background: linear-gradient(135deg, #b0b0b0, #e1e1e1); /* Grey White */
-}
-
-.historyBackground {
-    background: linear-gradient(135deg, #b0b0b0, #7e4d28); /* Grey Brown */
-}
-
-/* Smooth transitions */
-.bubble, .subBubble, .line {
-    transition: all 0.3s ease;
-}
-
-/* Hide spider lines initially */
-.spider .line {
-    height: 0;
-    opacity: 0;
-}
-/* Styling for the subtopic circles */
-.subBubble {
-    font-size: 12px; /* Slightly smaller font size for subtopics */
-    padding: 5px;
-    text-align: center;
-}
-
-/* Ensure proper alignment of container */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-/* Smooth background color transition */
-body {
+    background: linear-gradient(135deg, #d3d3d3, #6e7f80); /* Default background */
+    overflow: hidden;
     transition: background 0.5s ease;
 }
 
-/* Add smooth transition for the subBubble positioning */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.bubble {
+    width: 80px;
+    height: 80px;
+    background-color: #b0b0b0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.bubble.expanded {
+    transform: scale(1.5);
+}
+
+#backButton {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.spider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: none;
+    z-index: 0;
+}
+
+.line {
+    position: absolute;
+    width: 2px;
+    height: 0;
+    background-color: black;
+    transition: height 1s ease;
+}
+
 .subBubble {
-    transition: all 0.5s ease; /* Smooth transitions for both opacity and position */
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid #000;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+    opacity: 0;
+    transition: opacity 1s ease;
+    font-size: 14px;
 }

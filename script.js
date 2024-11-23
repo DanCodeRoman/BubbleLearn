@@ -1,4 +1,4 @@
-// Topics for each subject (subtopics)
+    // Topics for each subject (subtopics)
 const topics = {
     math: ["Algebra", "Calculus", "Geometry", "Statistics", "Trigonometry", "Linear Algebra", "Differential Equations", "Pre-Calculus", "Probability", "Mathematical Proofs"],
     chemistry: ["Organic Chemistry", "Inorganic Chemistry", "Physical Chemistry", "Biochemistry", "Analytical Chemistry", "Environmental Chemistry", "Thermodynamics", "Chemical Bonding", "Stoichiometry", "Atomic Theory"],
@@ -33,6 +33,7 @@ function zoomIn(bubble) {
 
     // Apply the background gradient for the clicked subject
     document.body.style.background = backgrounds[subject];
+    
 
     // Make the clicked bubble larger
     bubble.classList.add('expanded');
@@ -69,11 +70,17 @@ function createSpiderLines(subject) {
 
         line.style.transform = `rotate(${angle}deg)`;
         subBubble.style.transform = `translate(${x}px, ${y}px)`;
+        line.style.transition = 'height 0.5s ease-in-out, opacity 0.5s ease';
+        line.style.height = '200px';  // Set the height of the lines
+        line.style.opacity = 1;  // Ensure lines are visible
 
         // Set the line height and subBubble opacity
         setTimeout(() => {
             line.style.height = '200px'; // Set line height after animation starts
             subBubble.style.opacity = 1;  // Make subBubble appear smoothly
+            subBubble.style.position = 'absolute';
+            subBubble.style.left = `calc(50% + ${x}px)`;
+            subBubble.style.top = `calc(50% + ${y}px)`;
         }, 50);
     };
 };
@@ -84,7 +91,7 @@ function goBack() {
     document.querySelector('.container').style.display = 'flex';
     document.getElementById('backButton').style.display = 'none';
     document.body.style.background = 'linear-gradient(135deg, #d3d3d3, #6e7f80)'; // Default Grey-Blue gradient
-
+  
     // Remove the expanded class from all bubbles and hide spider lines
     document.querySelectorAll('.bubble').forEach(bubble => {
         bubble.classList.remove('expanded');

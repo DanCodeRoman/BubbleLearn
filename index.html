@@ -4,14 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bubble Learn</title>
-
-    <!-- Link to the CSS stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Main container holding the subject bubbles -->
     <div class="container">
-        <!-- Each bubble represents a subject -->
         <div class="bubble" id="math">Math</div>
         <div class="bubble" id="chemistry">Chemistry</div>
         <div class="bubble" id="biology">Biology</div>
@@ -19,13 +15,9 @@
         <div class="bubble" id="history">History</div>
     </div>
 
-    <!-- The back button that appears after clicking a bubble -->
-    <div id="backButton" class="backButton" onclick="goBack()">←</div>
+    <!-- Back Button -->
+    <div class="back-button" id="backButton" onclick="goBack()">← Back</div>
 
-    <!-- Container for spider lines and sub-bubbles that appear after clicking a main bubble -->
-    <div id="spider" class="spider"></div>
-
-    <!-- Link to the JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>

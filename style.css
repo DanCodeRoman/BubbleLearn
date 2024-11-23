@@ -1,3 +1,4 @@
+/* Reset default styling */
 * {
     margin: 0;
     padding: 0;
@@ -12,6 +13,7 @@ body {
     height: 100vh;
     font-family: Arial, sans-serif;
     overflow: hidden;
+    transition: transform 0.5s ease-in-out;
 }
 
 .bubble-container {
@@ -20,6 +22,7 @@ body {
     grid-gap: 20px;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .bubble {
@@ -45,4 +48,23 @@ body {
     top: 20px;
     left: 20px;
     background: transparent;
-  
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    display: none;  /* Initially hidden */
+}
+
+.zoomed .bubble-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scale(2);  /* Zoom effect */
+}
+
+.zoomed .bubble {
+    font-size: 2rem;
+}
+
+.zoomed #back-button {
+    display: block;  /* Show back button when zoomed */
+}

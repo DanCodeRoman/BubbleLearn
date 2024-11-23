@@ -127,9 +127,5 @@ function goBack() {
     });
     document.getElementById('spider').style.display = 'none';
     
-    // Reset the bubbles to their original size and position
-    const originalBubbles = document.querySelectorAll('.bubble');
-    originalBubbles.forEach(bubble => {
-        bubble.style.transform = 'scale(1)'; // Ensure bubbles return to normal size
-    });
+
 };

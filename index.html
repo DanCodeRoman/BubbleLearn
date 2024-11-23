@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bubble Learn</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="bubble-container">
-        <!-- Main bubbles -->
-        <div class="bubble" data-topic="Math">Math</div>
-        <div class="bubble" data-topic="Biology">Biology</div>
-        <div class="bubble" data-topic="Chemistry">Chemistry</div>
-        <div class="bubble" data-topic="Physics">Physics</div>
-        <!-- Add more bubbles here -->
+    <div class="container">
+        <div class="bubble" id="math">Math</div>
+        <div class="bubble" id="biology">Biology</div>
+        <div class="bubble" id="chemistry">Chemistry</div>
+        <div class="bubble" id="physics">Physics</div>
+        <!-- Add more bubbles as needed -->
     </div>
-    <button id="back-button" hidden>Back</button>
+
+    <div id="backButton" class="backButton" onclick="goBack()">Back</div>
+
     <script src="script.js"></script>
 </body>
 </html>

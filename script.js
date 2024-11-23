@@ -1,57 +1,81 @@
-body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to bottom right, grey, blue);
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const bubbles = document.querySelectorAll(".bubble");
+    const backButton = document.getElementById("back-button");
+    const container = document.getElementById("container");
 
-#container {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-}
+    bubbles.forEach(bubble => {
+        bubble.addEventListener("click", function () {
+            showSubBubbles(bubble.id);
+        });
+    });
 
-.bubble {
-    width: 100px;
-    height: 100px;
-    background-color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    color: black;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
+    backButton.addEventListener("click", function () {
+        goBack();
+    });
 
-.bubble:hover {
-    transform: scale(1.1);
-}
+    function showSubBubbles(id) {
+        backButton.style.display = "block";
+        container.classList.add("expanded");
+        container.innerHTML = "";
 
-#back-button {
-    display: none;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px;
-    background-color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-}
+        const centerBubble = document.createElement("div");
+        centerBubble.classList.add("bubble");
+        centerBubble.id = id;
+        centerBubble.innerText = id.charAt(0).toUpperCase() + id.slice(1);
+        centerBubble.style.zIndex = 10;
 
-#container.expanded .bubble {
-    position: absolute;
-    transition: all 0.5s;
-}
+        container.appendChild(centerBubble);
 
-#container.expanded .line {
-    position: absolute;
-    background-color: black;
-    width: 2px;
-}
+        const colors = {
+            math: "linear-gradient(to bottom right, grey, red)",
+            chemistry: "linear-gradient(to bottom right, grey, blue)",
+            biology: "linear-gradient(to bottom right, grey, green)",
+            physics: "linear-gradient(to bottom right, grey, white)",
+            history: "linear-gradient(to bottom right, grey, brown)",
+        };
 
+        document.body.style.background = colors[id];
+
+        const topics = {
+            math: ["Geometry", "Calculus", "Algebra", "Trigonometry", "Statistics", "Probability", "Discrete Math", "Number Theory", "Linear Algebra", "Differential Equations"],
+            chemistry: ["Organic Chemistry", "Inorganic Chemistry", "Physical Chemistry", "Analytical Chemistry", "Biochemistry", "Environmental Chemistry", "Materials Science", "Chemical Engineering", "Medicinal Chemistry", "Polymer Chemistry"],
+            biology: ["Genetics", "Microbiology", "Cell Biology", "Ecology", "Evolution", "Anatomy", "Physiology", "Botany", "Zoology", "Molecular Biology"],
+            physics: ["Mechanics", "Electromagnetism", "Thermodynamics", "Optics", "Quantum Physics", "Nuclear Physics", "Astrophysics", "Condensed Matter", "Particle Physics", "Acoustics"],
+            history: ["Ancient History", "Medieval History", "Renaissance", "Industrial Revolution", "Modern History", "World Wars", "Cold War", "American History", "Asian History", "European History"],
+        };
+
+        const subTopics = topics[id];
+
+        subTopics.forEach((topic, index) => {
+            const angle = (index / 10) * 2 * Math.PI;
+            const x = 250 * Math.cos(angle) + window.innerWidth / 2 - 50;
+            const y = 250 * Math.sin(angle) + window.innerHeight / 2 - 50;
+            const subBubble = document.createElement("div");
+            subBubble.classList.add("bubble");
+            subBubble.innerText = topic;
+            subBubble.style.position = "absolute";
+            subBubble.style.left = `${x}px`;
+            subBubble.style.top = `${y}px`;
+            container.appendChild(subBubble);
+        });
+    }
+
+    function goBack() {
+        backButton.style.display = "none";
+        container.classList.remove("expanded");
+        container.innerHTML = `
+            <div class="bubble" id="math">Math</div>
+            <div class="bubble" id="chemistry">Chemistry</div>
+            <div class="bubble" id="biology">Biology</div>
+            <div class="bubble" id="physics">Physics</div>
+            <div class="bubble" id="history">History</div>
+        `;
+        document.body.style.background = "linear-gradient(to bottom right, grey, blue)";
+        const newBubbles = container.querySelectorAll(".bubble");
+        newBubbles.forEach(bubble => {
+            bubble.addEventListener("click", function () {
+                showSubBubbles(bubble.id);
+            });
+        });
+    }
+});

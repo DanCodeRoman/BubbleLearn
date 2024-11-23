@@ -17,6 +17,15 @@ body {
     max-width: 800px;
 }
 
+.container {
+    display: grid;
+    grid-template-columns: repeat(5, 150px);
+    grid-gap: 20px;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+
 .bubble {
     width: 100px;
     height: 100px;

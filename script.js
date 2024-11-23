@@ -124,12 +124,19 @@ function goBack() {
     document.getElementById('backButton').style.display = 'none';
     document.body.style.background = 'linear-gradient(135deg, #d3d3d3, #6e7f80)'; // Default Grey-Blue gradient
     document.body.style.transition = "background 0.5s ease"; // Add transition for background reset
+
     // Remove the expanded class from all bubbles and hide spider lines
     document.querySelectorAll('.bubble').forEach(bubble => {
         bubble.classList.remove('expanded');
-        bubble.style.position = ''; 
+        bubble.style.position = '';
+        bubble.style.zIndex = "5"; // Ensure bubbles are on top when returning
     });
-    document.getElementById('spider').style.display = 'none';
-    
 
-};
+    document.getElementById('spider').style.display = 'none'; // Hide spider lines
+
+    // Reset the bubbles to their original size and position
+    const originalBubbles = document.querySelectorAll('.bubble');
+    originalBubbles.forEach(bubble => {
+        bubble.style.transform = 'scale(1)'; // Ensure bubbles return to normal size
+    });
+}

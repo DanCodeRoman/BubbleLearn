@@ -1,87 +1,57 @@
-/* General Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #5e7f8d, #8d99b3); /* Grey-blue gradient */
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
+    background: linear-gradient(to bottom right, grey, blue);
 }
 
-.container {
+#container {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-between;
     width: 80%;
 }
 
 .bubble {
+    width: 100px;
+    height: 100px;
     background-color: white;
-    color: black;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 22px;
+    font-size: 1.5rem;
+    color: black;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    position: relative;
+    transition: transform 0.3s;
 }
 
 .bubble:hover {
     transform: scale(1.1);
 }
 
-.back-button {
+#back-button {
+    display: none;
     position: absolute;
-    top: 10px;
+    top: 20px;
     left: 20px;
-    background: none;
+    padding: 10px;
+    background-color: white;
     border: none;
-    color: black;
-    font-size: 20px;
+    border-radius: 5px;
     cursor: pointer;
-    display: none;
+    font-size: 1rem;
 }
 
-.rays {
+#container.expanded .bubble {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    width: 100%;
-    height: 100%;
+    transition: all 0.5s;
 }
 
-.ray {
+#container.expanded .line {
     position: absolute;
-    width: 2px;
-    height: 0;
     background-color: black;
-    transition: height 0.3s ease-out;
+    width: 2px;
 }
 
-.ray span {
-    position: absolute;
-    top: -25px;
-    left: -50%;
-    width: 100px;
-    text-align: center;
-    font-size: 12px;
-}
-
-.hidden {
-    display: none;
-}

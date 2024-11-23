@@ -1,22 +1,23 @@
+/* Basic styling for the body */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: linear-gradient(135deg, #d3d3d3, #6e7f80); /* Grey-blue gradient background */
 }
 
+/* Container to hold the bubbles */
 .container {
-    display: grid;
-    grid-template-columns: repeat(5, 150px);
-    grid-gap: 20px;
-    justify-content: center;
-    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
 }
 
+/* Style for each bubble */
 .bubble {
     width: 150px;
     height: 150px;
@@ -26,33 +27,66 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
+/* Hover effect to make bubbles expand */
 .bubble:hover {
     transform: scale(1.1);
 }
 
+/* Back button style */
 .backButton {
     display: none;
     position: absolute;
     top: 20px;
     left: 20px;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    font-size: 16px;
+    font-size: 30px;
     cursor: pointer;
-    border: none;
-    border-radius: 5px;
+    z-index: 10;
 }
 
+/* Styling for spider-like lines */
+.spider {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* When a bubble expands (zoom effect) */
 .bubble.expanded {
     width: 300px;
     height: 300px;
     font-size: 24px;
     transition: all 0.3s ease;
+}
+
+/* Spider lines for each topic around the expanded bubble */
+.spider .line {
+    position: absolute;
+    width: 2px;
+    background-color: black;
+    height: 0;
+    transition: height 0.3s ease-in-out;
+}
+
+.spider .subBubble {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }

@@ -63,6 +63,7 @@ body {
 .bubble.expanded {
     transform: scale(1.5); /* Larger size for the clicked bubble */
     font-size: 30px; /* Bigger text when expanded */
+    position: absolute;     /* Absolute positioning for centering */
 }
 
 /* Spider lines container */
@@ -100,7 +101,7 @@ body {
     font-size: 14px;
     font-weight: bold;
     opacity: 0; /* Initially, subtopics are invisible */
-    transition: opacity 0.5s ease;
+    transition: opacity 0.7s ease;
 }
 
 /* Show subtopics when they appear */

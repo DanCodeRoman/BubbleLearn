@@ -16,7 +16,7 @@ body {
     transition: transform 0.5s ease-in-out;
 }
 
-/* Style the container for the bubbles */
+/* Bubble container grid layout */
 .bubble-container {
     display: grid;
     grid-template-columns: repeat(2, 200px);
@@ -24,9 +24,10 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    transition: all 0.3s ease;
 }
 
-/* Basic bubble style */
+/* Style the bubbles */
 .bubble {
     width: 150px;
     height: 150px;
@@ -54,15 +55,15 @@ body {
     border: none;
     font-size: 24px;
     cursor: pointer;
-    display: none;  /* Initially hidden */
+    display: none;  /* Hidden initially */
 }
 
-/* When zoomed in, change layout */
+/* When zoomed in, show full screen layout */
 .zoomed .bubble-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    transform: scale(2);  /* Zoom effect */
+    transform: scale(1.5);  /* Zoom effect */
 }
 
 .zoomed .bubble {

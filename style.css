@@ -70,14 +70,14 @@ body {
 
 .subBubble {
     position: absolute;
-    width: 100px;
-    height: 30px;
+    width: 60px; /* Set a fixed width */
+    height: 60px; /* Set height equal to width to make them circular */
     background-color: white;
     border: 1px solid #000;
-    border-radius: 5px;
+    border-radius: 50%; /* This makes the bubble round */
     display: inline-block;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
     opacity: 0;
     transition: opacity 1s ease;
     font-size: 14px;

@@ -68,11 +68,16 @@ function createSpiderLines(subject) {
         const x = 200 * Math.cos(angleRad);
         const y = 200 * Math.sin(angleRad);
 
+        subBubble.style.left = `calc(50% + ${x}px)`;
+        subBubble.style.top = `calc(50% + ${y}px)`;
+        
+
         line.style.transform = `rotate(${angle}deg)`;
         subBubble.style.transform = `translate(${x}px, ${y}px)`;
         line.style.transition = 'height 0.5s ease-in-out, opacity 0.5s ease';
         line.style.height = '200px';  // Set the height of the lines
         line.style.opacity = 1;  // Ensure lines are visible
+        
 
         // Set the line height and subBubble opacity
         setTimeout(() => {

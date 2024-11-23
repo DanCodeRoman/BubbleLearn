@@ -147,3 +147,8 @@ body {
     align-items: center;
     height: 100vh;
 }
+
+/* Add smooth transition for the subBubble positioning */
+.subBubble {
+    transition: all 0.5s ease; /* Smooth transitions for both opacity and position */
+}

@@ -1,86 +1,57 @@
-// Subtopics for each subject
-const topics = {
-    math: ["Algebra", "Geometry", "Calculus", "Trigonometry", "Statistics", "Linear Algebra", "Differential Equations", "Logic", "Combinatorics", "Number Theory"],
-    chemistry: ["Organic Chemistry", "Inorganic Chemistry", "Biochemistry", "Physical Chemistry", "Thermodynamics", "Chemical Reactions", "Stoichiometry", "Electrochemistry", "Periodic Table", "Acid-Base Chemistry"],
-    biology: ["Genetics", "Cell Biology", "Evolution", "Ecology", "Anatomy", "Physiology", "Botany", "Microbiology", "Biochemistry", "Molecular Biology"],
-    physics: ["Mechanics", "Electromagnetism", "Thermodynamics", "Optics", "Quantum Physics", "Fluid Mechanics", "Nuclear Physics", "Astrophysics", "Acoustics", "Relativity"],
-    history: ["World History", "American History", "European History", "Ancient Civilizations", "Modern History", "Political Revolutions", "World Wars", "Colonialism", "Historical Geography", "Cultural History"]
-};
-
-let currentSubject = null;
-
-// Show Subtopics when a bubble is clicked
-function showSubject(subject) {
-    currentSubject = subject;
-
-    // Change Background
-    let color = "";
-    if (subject === "math") color = "linear-gradient(135deg, #7a5353, #c24e5a)";
-    else if (subject === "chemistry") color = "linear-gradient(135deg, #5e7f8d, #8d99b3)";
-    else if (subject === "biology") color = "linear-gradient(135deg, #6a994e, #a7c7d6)";
-    else if (subject === "physics") color = "linear-gradient(135deg, #f0f0f0, #ffffff)";
-    else if (subject === "history") color = "linear-gradient(135deg, #7a4b3b, #c1a89b)";
-    document.body.style.background = color;
-
-    // Hide Bubbles
-    document.querySelectorAll('.bubble').forEach(bubble => {
-        bubble.style.display = "none";
-    });
-
-    // Show the clicked bubble and the rays
-    const bubble = document.getElementById(subject);
-    bubble.style.transform = "scale(1.5)";
-    bubble.style.position = "absolute";
-    bubble.style.top = "50%";
-    bubble.style.left = "50%";
-    bubble.style.transform = "translate(-50%, -50%)";
-
-    // Create the rays
-    const raysContainer = document.createElement('div');
-    raysContainer.classList.add('rays');
-
-    topics[subject].forEach((topic, index) => {
-        const ray = document.createElement('div');
-        ray.classList.add('ray');
-        const angle = (index * 36) - 90;
-        const length = 200;
-        ray.style.transform = `rotate(${angle}deg)`;
-        ray.style.height = `${length}px`;
-
-        const subBubble = document.createElement('div');
-        subBubble.classList.add('bubble');
-        subBubble.textContent = topic;
-        ray.appendChild(subBubble);
-        raysContainer.appendChild(ray);
-    });
-
-    document.body.appendChild(raysContainer);
-
-    // Show back button
-    document.getElementById('backButton').style.display = "block";
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom right, grey, blue);
 }
 
-// Go back to the homepage
-function goBack() {
-    // Reset bubbles and background
-    document.body.style.background = "linear-gradient(135deg, #5e7f8d, #8d99b3)";
-    document.querySelectorAll('.bubble').forEach(bubble => {
-        bubble.style.display = "block";
-        bubble.style.position = "relative";
-        bubble.style.transform = "scale(1)";
-    });
-
-    // Hide subtopic rays and back button
-    document.querySelectorAll('.rays').forEach(ray => {
-        ray.remove();
-    });
-    document.getElementById('backButton').style.display = "none";
-    currentSubject = null;
+#container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
 }
 
-// Add event listeners to each bubble
-document.getElementById('math').addEventListener('click', () => showSubject('math'));
-document.getElementById('chemistry').addEventListener('click', () => showSubject('chemistry'));
-document.getElementById('biology').addEventListener('click', () => showSubject('
+.bubble {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: black;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
 
-                                                                               }                                                                           
+.bubble:hover {
+    transform: scale(1.1);
+}
+
+#back-button {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#container.expanded .bubble {
+    position: absolute;
+    transition: all 0.5s;
+}
+
+#container.expanded .line {
+    position: absolute;
+    background-color: black;
+    width: 2px;
+}
+

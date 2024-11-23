@@ -1,84 +1,87 @@
-/* General Body and Layout */
-body {
+/* General Styles */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #5e7f8d, #8d99b3); /* Grey-blue gradient */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #d3d3d3, #6e7f80); /* Default background */
     overflow: hidden;
-    transition: background 0.5s ease;
 }
 
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    position: relative;
-    z-index: 1;
+    width: 80%;
 }
 
 .bubble {
-    width: 80px;
-    height: 80px;
-    background-color: #b0b0b0;
+    background-color: white;
+    color: black;
     border-radius: 50%;
+    width: 150px;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 22px;
     cursor: pointer;
-    font-size: 16px;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease-in-out;
+    position: relative;
 }
 
-.bubble.expanded {
-    transform: scale(1.5);
+.bubble:hover {
+    transform: scale(1.1);
 }
 
-#backButton {
-    display: none;
+.back-button {
     position: absolute;
-    top: 20px;
+    top: 10px;
     left: 20px;
-    font-size: 30px;
+    background: none;
+    border: none;
+    color: black;
+    font-size: 20px;
     cursor: pointer;
-    z-index: 1;
+    display: none;
 }
 
-.spider {
+.rays {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    display: none;
-    z-index: 0;
 }
 
-.line {
+.ray {
     position: absolute;
     width: 2px;
     height: 0;
     background-color: black;
-    transition: height 0.5s ease-in-out; 
+    transition: height 0.3s ease-out;
 }
 
-.subBubble {
+.ray span {
     position: absolute;
-    width: 60px; /* Set a fixed width */
-    height: 60px; /* Set height equal to width to make them circular */
-    background-color: white;
-    border: 1px solid #000;
-    border-radius: 50%; /* This makes the bubble round */
-    display: inline-block;
+    top: -25px;
+    left: -50%;
+    width: 100px;
     text-align: center;
-    padding: 10px;
-    opacity: 0;
-    transition: opacity 1s ease;
-    font-size: 14px;
+    font-size: 12px;
+}
+
+.hidden {
+    display: none;
 }

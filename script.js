@@ -39,7 +39,7 @@ function zoomIn(bubble) {
 
     // Create spider lines and sub-bubbles
     createSpiderLines(subject);
-}
+};
 
 // Create spider lines and subtopics
 function createSpiderLines(subject) {
@@ -75,8 +75,8 @@ function createSpiderLines(subject) {
             line.style.height = '200px'; // Set line height after animation starts
             subBubble.style.opacity = 1;  // Make subBubble appear smoothly
         }, 50);
-    }
-}
+    };
+};
 
 // Go back to the main page
 function goBack() {
@@ -90,7 +90,7 @@ function goBack() {
         bubble.classList.remove('expanded');
     });
     document.getElementById('spider').style.display = 'none';
-}
+};
 
 window.onload = function() {
     // Now the page is fully loaded, and the script can be run

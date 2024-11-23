@@ -34,12 +34,30 @@ function zoomIn(bubble) {
     // Apply the background gradient for the clicked subject
     document.body.style.background = backgrounds[subject];
 
-    // Make the clicked bubble larger
+    // Make the clicked bubble larger and position it in the center
     bubble.classList.add('expanded');
+    centerBubble(bubble);
 
     // Create spider lines and sub-bubbles
     createSpiderLines(subject, bubble);
 };
+
+// Center the clicked bubble on the page
+function centerBubble(bubble) {
+    // Get the bubble's size and position
+    const bubbleRect = bubble.getBoundingClientRect();
+    const bubbleWidth = bubbleRect.width;
+    const bubbleHeight = bubbleRect.height;
+
+    // Calculate the position to center the bubble in the viewport
+    const xPosition = (window.innerWidth - bubbleWidth) / 2;
+    const yPosition = (window.innerHeight - bubbleHeight) / 2;
+
+    // Position the bubble at the center
+    bubble.style.position = 'absolute';
+    bubble.style.left = `${xPosition}px`;
+    bubble.style.top = `${yPosition}px`;
+}
 
 // Create spider lines and subtopics
 function createSpiderLines(subject, bubble) {
@@ -101,9 +119,4 @@ function goBack() {
         bubble.classList.remove('expanded');
     });
     document.getElementById('spider').style.display = 'none';
-};
-
-    
-    // Ensure back button functionality
-    document.getElementById('backButton').addEventListener('click', goBack);
 };

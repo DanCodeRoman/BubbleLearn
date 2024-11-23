@@ -46,7 +46,7 @@ function zoomIn(bubble) {
 function createSpiderLines(subject) {
     const spider = document.getElementById('spider');
     spider.style.display = 'block';  // Make the spider container visible
-    spider.innerHTML = ''; // Clear any existing lines or bubbles
+    
 
     const bubble = document.querySelector(`#${subject}`);
 

@@ -17,6 +17,9 @@ document.querySelectorAll('.bubble').forEach(bubble => {
 // Zoom-in function and show subtopics
 function zoomIn(bubble) {
     const subject = bubble.id;
+    
+    document.body.style.transition = "background 0.5s ease";  // Add this line to ensure background transition
+    document.body.style.background = backgrounds[subject]; // This already sets the new background gradient
 
     // Hide the original bubbles and show the back button
     document.querySelector('.container').style.display = 'none';
@@ -58,6 +61,8 @@ function centerBubble(bubble) {
     bubble.style.position = 'absolute';
     bubble.style.left = `${xPosition}px`;
     bubble.style.top = `${yPosition}px`;
+
+    bubble.style.zIndex = "5"; // This ensures the clicked bubble stays on top
 }
 
 // Create spider lines and subtopics

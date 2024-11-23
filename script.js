@@ -82,3 +82,5 @@ function goBack() {
 document.getElementById('math').addEventListener('click', () => showSubject('math'));
 document.getElementById('chemistry').addEventListener('click', () => showSubject('chemistry'));
 document.getElementById('biology').addEventListener('click', () => showSubject('
+
+                                                                               }                                                                           

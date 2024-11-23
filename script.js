@@ -1,51 +1,44 @@
-// Zoom in to a subject when clicked
-function zoomIn(subject) {
-    const container = document.querySelector('.bubble-container');
-    container.innerHTML = '';  // Clear existing bubbles
-
-    let topics;
-    if (subject === 'Math') {
-        topics = ['PreCalc', 'Algebra', 'Geometry', 'Calculus'];
-    } else if (subject === 'Biology') {
-        topics = ['Cells', 'DNA', 'Ecology', 'Evolution'];
-    } else if (subject === 'Chemistry') {
-        topics = ['Organic Chemistry', 'Atoms', 'Chemical Reactions'];
-    } else if (subject === 'Physics') {
-        topics = ['Mechanics', 'Electricity', 'Optics', 'Thermodynamics'];
-    }
-
-    // Add new bubbles for the selected topic
-    topics.forEach(topic => {
-        const bubble = document.createElement('div');
-        bubble.classList.add('bubble');
-        bubble.textContent = topic;
-        bubble.onclick = () => zoomIn(topic);  // Click on a topic to zoom in further
-        container.appendChild(bubble);
+// JavaScript to handle bubble clicks and back functionality
+document.querySelectorAll('.bubble').forEach(bubble => {
+    bubble.addEventListener('click', function() {
+        zoomIn(bubble);
     });
+});
 
-    // Show the back button
-    const backButton = document.getElementById('back-button');
-    backButton.style.display = 'block';
+function zoomIn(bubble) {
+    // Hide all bubbles and show the back button
+    document.querySelector('.container').style.display = 'none';
+    document.getElementById('backButton').style.display = 'block';
 
-    // Apply zoom effect by modifying the body class
-    document.body.classList.add('zoomed');
+    // Create new bubbles based on the clicked bubble
+    const topics = getTopics(bubble.id);
+    const container = document.querySelector('.container');
+    container.innerHTML = ''; // Clear the existing bubbles
+
+    topics.forEach(topic => {
+        const newBubble = document.createElement('div');
+        newBubble.classList.add('bubble');
+        newBubble.innerText = topic;
+        newBubble.addEventListener('click', function() {
+            zoomIn(newBubble);
+        });
+        container.appendChild(newBubble);
+    });
 }
 
-// Zoom out (back to main bubbles)
-function zoomOut() {
-    // Reset to the main bubbles (Math, Biology, etc.)
-    const container = document.querySelector('.bubble-container');
-    container.innerHTML = `
-        <div class="bubble" onclick="zoomIn('Math')">Math</div>
-        <div class="bubble" onclick="zoomIn('Biology')">Biology</div>
-        <div class="bubble" onclick="zoomIn('Chemistry')">Chemistry</div>
-        <div class="bubble" onclick="zoomIn('Physics')">Physics</div>
-    `;
-    
-    // Hide the back button
-    const backButton = document.getElementById('back-button');
-    backButton.style.display = 'none';
+function goBack() {
+    // Show the original bubbles and hide the back button
+    document.querySelector('.container').style.display = 'grid';
+    document.getElementById('backButton').style.display = 'none';
+}
 
-    // Remove the zoom effect
-    document.body.classList.remove('zoomed');
+function getTopics(bubbleId) {
+    // Return topics based on the clicked subject
+    const topics = {
+        'math': ['PreCalc', 'Algebra', 'Geometry', 'Calculus'],
+        'biology': ['Cell Biology', 'Genetics', 'Evolution', 'Ecology'],
+        'chemistry': ['Organic Chemistry', 'Inorganic Chemistry', 'Physical Chemistry'],
+        'physics': ['Mechanics', 'Thermodynamics', 'Electromagnetism']
+    };
+    return topics[bubbleId] || [];
 }

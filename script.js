@@ -50,6 +50,10 @@ function createSpiderLines(subject) {
 
     const bubble = document.querySelector(`#${subject}`);
 
+    const bubbleRect = bubble.getBoundingClientRect();
+    const bubbleCenterX = bubbleRect.left + bubbleRect.width / 2;
+    const bubbleCenterY = bubbleRect.top + bubbleRect.height / 2;
+
     // Create 10 spider lines extending from the clicked bubble
     const angleIncrement = 360 / 10;
     for (let i = 0; i < 10; i++) {
@@ -65,11 +69,13 @@ function createSpiderLines(subject) {
 
         // Position the line and subBubble using angle and trigonometry
         const angleRad = angle * (Math.PI / 180);
+        const radius = 200;  // Distance from center
         const x = 200 * Math.cos(angleRad);
         const y = 200 * Math.sin(angleRad);
 
-        subBubble.style.left = `calc(50% + ${x}px)`;
-        subBubble.style.top = `calc(50% + ${y}px)`;
+        subBubble.style.position = 'absolute';
+        subBubble.style.left = `calc(${bubbleCenterX + x - 50}px)`; // Subtract half the size of subBubble to center it
+        subBubble.style.top = `calc(${bubbleCenterY + y - 50}px)`; // Subtract half the size of subBubble to center it
         
 
         line.style.transform = `rotate(${angle}deg)`;
@@ -84,8 +90,7 @@ function createSpiderLines(subject) {
             line.style.height = '200px'; // Set line height after animation starts
             subBubble.style.opacity = 1;  // Make subBubble appear smoothly
             subBubble.style.position = 'absolute';
-            subBubble.style.left = `calc(50% + ${x}px)`;
-            subBubble.style.top = `calc(50% + ${y}px)`;
+
         }, 50);
     };
 };

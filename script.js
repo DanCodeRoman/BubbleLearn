@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         centerBubble.classList.add("bubble");
         centerBubble.id = id;
         centerBubble.innerText = id.charAt(0).toUpperCase() + id.slice(1);
-        centerBubble.style.zIndex = 100;
+        centerBubble.style.zIndex = 20;
 
         container.appendChild(centerBubble);
 

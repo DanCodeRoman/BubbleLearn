@@ -24,11 +24,11 @@ function zoomIn(subject) {
         container.appendChild(bubble);
     });
 
-    // Add the back button
+    // Show the back button
     const backButton = document.getElementById('back-button');
-    backButton.style.display = 'block';  // Show the back button
+    backButton.style.display = 'block';
 
-    // Apply zoom class to body
+    // Apply zoom class to body for the zoom effect
     document.body.classList.add('zoomed');
 }
 
@@ -47,6 +47,6 @@ function zoomOut() {
     const backButton = document.getElementById('back-button');
     backButton.style.display = 'none';
 
-    // Remove the zoomed effect
+    // Remove the zoom effect
     document.body.classList.remove('zoomed');
 }

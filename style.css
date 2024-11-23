@@ -1,76 +1,48 @@
-body {
+* {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0; /* Minimalistic grey */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-#bubble-container {
+body {
+    background-color: #f0f0f0;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    max-width: 800px;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.bubble-container {
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
+    grid-gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .bubble {
-    width: 100px;
-    height: 100px;
-    border: 2px solid black;
-    border-radius: 50%;
+    width: 150px;
+    height: 150px;
     background-color: white;
+    border-radius: 50%;
+    border: 3px solid black;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
     cursor: pointer;
-    text-align: center;
-    transition: transform 0.3s;
+    transition: all 0.3s ease-in-out;
 }
 
 .bubble:hover {
-    transform: scale(1.2); /* Slight zoom on hover */
+    transform: scale(1.1);
 }
 
 #back-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    background-color: black;
-    color: white;
-    border-radius: 5px;
-}
-
-#back-button:disabled {
-    background-color: #888;
-    cursor: not-allowed;
-}
-
-/* Add transition for a smooth zoom */
-#bubble-container.zoom-in {
-    transform: scale(1.5); /* Scale the entire container */
-    transition: transform 0.5s ease-in-out;
-    justify-content: center;
-}
-
-/* Style the bubbles when zoomed-in */
-#bubble-container.zoom-in .bubble {
-    opacity: 0; /* Hide all bubbles initially */
-    transition: opacity 0.5s;
-}
-
-#bubble-container.zoom-in .bubble.active {
-    opacity: 1; /* Only the active bubbles are visible */
-}
-
-/* Adjust back button position */
-#back-button {
-    position: fixed;
+    position: absolute;
     top: 20px;
     left: 20px;
-}
+    background: transparent;
+  

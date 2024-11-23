@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
         centerBubble.id = id;
         centerBubble.innerText = id.charAt(0).toUpperCase() + id.slice(1);
         centerBubble.style.zIndex = 10; 
-        centerBubble.style.left = "calc(50% - 510px)"; // Center horizontally 
-        centerBubble.style.top = "calc(50% - 510px)";
+        centerBubble.style.left = "calc(50% - 40px)"; // Center horizontally 
+        centerBubble.style.top = "calc(50% - 40px)";
 
         container.appendChild(centerBubble);
 

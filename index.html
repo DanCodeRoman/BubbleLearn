@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bubble Learn</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
 </head>
 <body>
+    <!-- Container for the bubbles -->
     <div class="container">
         <div class="bubble" id="math">Math</div>
-        <div class="bubble" id="biology">Biology</div>
         <div class="bubble" id="chemistry">Chemistry</div>
+        <div class="bubble" id="biology">Biology</div>
         <div class="bubble" id="physics">Physics</div>
-        <!-- Add more bubbles as needed -->
+        <div class="bubble" id="history">History</div>
     </div>
 
-    <div id="backButton" class="backButton" onclick="goBack()">Back</div>
+    <!-- Back button that is initially hidden -->
+    <div id="backButton" class="backButton" onclick="goBack()">←</div>
+
+    <div id="spider" class="spider"></div>
 
     <script src="script.js"></script>
 </body>

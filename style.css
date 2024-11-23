@@ -1,92 +1,233 @@
-/* Basic styling for the body */
+/* General Body and Layout Styling */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #d3d3d3, #6e7f80); /* Default Grey-Blue gradient */
+    transition: background 0.5s ease; /* Smooth background transition */
+}
+
+#backButton {
+    display: none; /* Hidden initially */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    color: black;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+#backButton:hover {
+    color: #888;
+}
+
+/* Container for the home page bubbles */
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #d3d3d3, #6e7f80); /* Grey-blue gradient background */
+    position: relative;
 }
 
-/* Container to hold the bubbles */
-.container {
-    display: flex;
-    justify-content: space-evenly;
-    width: 80%;
-}
-
-/* Style for each bubble */
+/* Styling for the 5 subject bubbles */
 .bubble {
+    position: relative;
     width: 150px;
     height: 150px;
-    border-radius: 50%;
+    margin: 20px;
     background-color: white;
-    border: 2px solid black;
+    border: 3px solid black;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
+    color: black;
     cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease, font-size 0.3s ease;
 }
 
-/* Hover effect to make bubbles expand */
 .bubble:hover {
-    transform: scale(1.1);
+    transform: scale(1.1); /* Slight expand on hover */
 }
 
-/* Back button style */
-.backButton {
-    display: none;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 30px;
-    cursor: pointer;
-    z-index: 10;
+/* Styling for the clicked (expanded) bubble */
+.bubble.expanded {
+    transform: scale(1.5); /* Larger size for the clicked bubble */
+    font-size: 30px; /* Bigger text when expanded */
 }
 
-/* Styling for spider-like lines */
+/* Spider lines container */
 .spider {
     position: absolute;
-    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Initially hidden */
+    z-index: 1;
     width: 100%;
     height: 100%;
-    pointer-events: none;
 }
 
-/* When a bubble expands (zoom effect) */
-.bubble.expanded {
-    width: 300px;
-    height: 300px;
-    font-size: 24px;
-    transition: all 0.3s ease;
-}
-
-/* Spider lines for each topic around the expanded bubble */
-.spider .line {
+/* Styling for the lines connecting the central bubble to the subtopics */
+.line {
     position: absolute;
     width: 2px;
     background-color: black;
-    height: 0;
-    transition: height 0.3s ease-in-out;
+    height: 0; /* Initially, lines have zero height */
+    transition: height 0.5s ease-in-out;
 }
 
-.spider .subBubble {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+/* Subtopic bubbles */
+.subBubble {
+    position: absolute;
     background-color: white;
     border: 2px solid black;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 14px;
     font-weight: bold;
+    opacity: 0; /* Initially, subtopics are invisible */
+    transition: opacity 0.5s ease;
+}
+
+/* Styling for the home page */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #d3d3d3, #6e7f80);
+}
+
+/* Home Page: Default gradient background */
+body {
+    background: linear-gradient(135deg, #d3d3d3, #6e7f80);
+}
+
+/* Bubble hover animation */
+.bubble:hover {
+    transform: scale(1.1); /* Slight expand on hover */
+}
+
+/* Specific background color per subject */
+.mathBackground {
+    background: linear-gradient(135deg, #b0b0b0, #ff4d4d); /* Grey Red */
+}
+
+.chemistryBackground {
+    background: linear-gradient(135deg, #b0b0b0, #4d88d7); /* Grey Blue */
+}
+
+.biologyBackground {
+    background: linear-gradient(135deg, #b0b0b0, #4d9e7e); /* Grey Green */
+}
+
+.physicsBackground {
+    background: linear-gradient(135deg, #b0b0b0, #e1e1e1); /* Grey White */
+}
+
+.historyBackground {
+    background: linear-gradient(135deg, #b0b0b0, #7e4d28); /* Grey Brown */
+}
+
+/* General Styling for subtopic text */
+.subBubble {
+    font-size: 12px; /* Slightly smaller font size for subtopics */
+    padding: 5px;
+    text-align: center;
+}
+
+/* Back Button Styling */
+#backButton {
+    display: none;
+    font-size: 20px;
     position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+
+#backButton:hover {
+    color: #777;
+}
+
+/* Smooth transitions */
+.bubble, .subBubble, .line {
+    transition: all 0.3s ease;
+}
+
+/* Smooth background color transition */
+body {
+    transition: background 0.5s ease;
+}
+
+/* Styling for the subtopic circles */
+.subBubble {
+    position: absolute;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0; /* Subtopics hidden initially */
+    transition: opacity 0.5s ease;
+}
+
+/* Transition when a subtopic appears */
+.subBubble.show {
+    opacity: 1;
+}
+
+/* Ensure the body container and elements align correctly */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Hide spider lines initially */
+.spider .line {
+    height: 0;
     opacity: 0;
-    transition: opacity 0.3s ease;
+}
+
+/* Styling for the back arrow button */
+#backButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+    z-index: 10;
+    display: none;
+}
+
+#backButton:hover {
+    color: #888;
+}
+
+/* Increase size of expanded bubble */
+.bubble.expanded {
+    transform: scale(1.5);
+    font-size: 30px;
 }

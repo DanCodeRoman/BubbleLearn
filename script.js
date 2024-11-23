@@ -78,7 +78,7 @@ function createSpiderLines(subject, bubble) {
 
     // Create 10 spider lines extending from the clicked bubble
     const angleIncrement = 360 / 10;
-    const radius = 200;  // Distance from center of clicked bubble
+    const radius = 150;  // Distance from center of clicked bubble
 
     for (let i = 0; i < 10; i++) {
         const angle = i * angleIncrement;
@@ -102,15 +102,19 @@ function createSpiderLines(subject, bubble) {
 
         // Position the subBubble (relative to the clicked bubble center)
         subBubble.style.position = 'absolute';
-        subBubble.style.left = `calc(${bubbleCenterX + x - 30}px)`; // Subtract 50 to center the subbubble
-        subBubble.style.top = `calc(${bubbleCenterY + y - 30}px)`; // Subtract 50 to center the subbubble
+        subBubble.style.left = `calc(${bubbleCenterX + x - 30}px)`; // Adjust to center the subbubble
+        subBubble.style.top = `calc(${bubbleCenterY + y - 30}px)`; // Adjust to center the subbubble
+        subBubble.style.zIndex = "1"; // Ensure subbubbles don't block the main bubble
 
         // Animate the lines and subbubbles
         setTimeout(() => {
-            line.style.height = '200px'; // Set line height after animation starts
+            line.style.height = '150px'; // Set line height after animation starts
             subBubble.style.opacity = 1;  // Make subBubble appear smoothly
         }, 50);
     };
+
+    // Ensure main bubble stays clickable by setting a higher z-index for it
+    bubble.style.zIndex = '10';
 }
 
 // Go back to the main page

@@ -91,3 +91,15 @@ function goBack() {
     });
     document.getElementById('spider').style.display = 'none';
 }
+
+window.onload = function() {
+    // Now the page is fully loaded, and the script can be run
+    document.querySelectorAll('.bubble').forEach(bubble => {
+        bubble.addEventListener('click', function () {
+            zoomIn(bubble);
+        });
+    });
+    
+    // Ensure back button functionality
+    document.getElementById('backButton').addEventListener('click', goBack);
+};

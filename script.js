@@ -102,8 +102,8 @@ function createSpiderLines(subject, bubble) {
 
         // Position the subBubble (relative to the clicked bubble center)
         subBubble.style.position = 'absolute';
-        subBubble.style.left = `calc(${bubbleCenterX + x - 50}px)`; // Subtract 50 to center the subbubble
-        subBubble.style.top = `calc(${bubbleCenterY + y - 50}px)`; // Subtract 50 to center the subbubble
+        subBubble.style.left = `calc(${bubbleCenterX + x - 30}px)`; // Subtract 50 to center the subbubble
+        subBubble.style.top = `calc(${bubbleCenterY + y - 30}px)`; // Subtract 50 to center the subbubble
 
         // Animate the lines and subbubbles
         setTimeout(() => {
@@ -126,4 +126,10 @@ function goBack() {
         bubble.style.position = ''; 
     });
     document.getElementById('spider').style.display = 'none';
+    
+    // Reset the bubbles to their original size and position
+    const originalBubbles = document.querySelectorAll('.bubble');
+    originalBubbles.forEach(bubble => {
+        bubble.style.transform = 'scale(1)'; // Ensure bubbles return to normal size
+    });
 };

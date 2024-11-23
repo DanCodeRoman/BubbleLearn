@@ -7,14 +7,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="bubble-container">
-        <div class="bubble" onclick="zoomIn('Math')">Math</div>
-        <div class="bubble" onclick="zoomIn('Biology')">Biology</div>
-        <div class="bubble" onclick="zoomIn('Chemistry')">Chemistry</div>
-        <div class="bubble" onclick="zoomIn('Physics')">Physics</div>
+    <div class="container">
+        <div class="bubble" id="math">Math</div>
+        <div class="bubble" id="biology">Biology</div>
+        <div class="bubble" id="chemistry">Chemistry</div>
+        <div class="bubble" id="physics">Physics</div>
+        <!-- Add more bubbles as needed -->
     </div>
 
-    <button id="back-button" onclick="zoomOut()">&#8592; Back</button>
+    <div id="backButton" class="backButton" onclick="goBack()">Back</div>
 
     <script src="script.js"></script>
 </body>

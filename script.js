@@ -17,11 +17,11 @@ document.querySelectorAll('.bubble').forEach(bubble => {
 // Zoom-in function and show subtopics
 function zoomIn(bubble) {
     const subject = bubble.id;
-    
+
     // Hide the original bubbles and show the back button
     document.querySelector('.container').style.display = 'none';
     document.getElementById('backButton').style.display = 'block';
-    
+
     // Change background color based on the subject
     const backgrounds = {
         math: 'linear-gradient(135deg, #b0b0b0, #ff4d4d)', // Grey Red
@@ -33,29 +33,29 @@ function zoomIn(bubble) {
 
     // Apply the background gradient for the clicked subject
     document.body.style.background = backgrounds[subject];
-    
 
     // Make the clicked bubble larger
     bubble.classList.add('expanded');
 
     // Create spider lines and sub-bubbles
-    createSpiderLines(subject);
+    createSpiderLines(subject, bubble);
 };
 
 // Create spider lines and subtopics
-function createSpiderLines(subject) {
+function createSpiderLines(subject, bubble) {
     const spider = document.getElementById('spider');
     spider.style.display = 'block';  // Make the spider container visible
     spider.innerHTML = ''; // Clear any existing lines or bubbles
 
-    const bubble = document.querySelector(`#${subject}`);
-
+    // Get the position of the clicked bubble to calculate the center point
     const bubbleRect = bubble.getBoundingClientRect();
     const bubbleCenterX = bubbleRect.left + bubbleRect.width / 2;
     const bubbleCenterY = bubbleRect.top + bubbleRect.height / 2;
 
     // Create 10 spider lines extending from the clicked bubble
     const angleIncrement = 360 / 10;
+    const radius = 200;  // Distance from center of clicked bubble
+
     for (let i = 0; i < 10; i++) {
         const angle = i * angleIncrement;
         const line = document.createElement('div');
@@ -69,28 +69,22 @@ function createSpiderLines(subject) {
 
         // Position the line and subBubble using angle and trigonometry
         const angleRad = angle * (Math.PI / 180);
-        const radius = 200;  // Distance from center
         const x = radius * Math.cos(angleRad);  // X position from center
         const y = radius * Math.sin(angleRad);  // Y position from center
 
-        subBubble.style.position = 'absolute';
-        subBubble.style.left = `calc(${bubbleCenterX + x - 50}px)`; // Subtract half the size of subBubble to center it
-        subBubble.style.top = `calc(${bubbleCenterY + y - 50}px)`; // Subtract half the size of subBubble to center it
-        
+        // Position the line (from the clicked bubble center)
         line.style.transformOrigin = "0 100%";
         line.style.transform = `rotate(${angle}deg)`;
-        subBubble.style.transform = `translate(${x}px, ${y}px)`;
-        line.style.transition = 'height 0.5s ease-in-out, opacity 0.5s ease';
-        line.style.height = '200px';  // Set the height of the lines
-        line.style.opacity = 1;  // Ensure lines are visible
-        
 
-        // Set the line height and subBubble opacity
+        // Position the subBubble (relative to the clicked bubble center)
+        subBubble.style.position = 'absolute';
+        subBubble.style.left = `calc(${bubbleCenterX + x - 50}px)`; // Subtract 50 to center the subbubble
+        subBubble.style.top = `calc(${bubbleCenterY + y - 50}px)`; // Subtract 50 to center the subbubble
+
+        // Animate the lines and subbubbles
         setTimeout(() => {
             line.style.height = '200px'; // Set line height after animation starts
             subBubble.style.opacity = 1;  // Make subBubble appear smoothly
-            subBubble.style.position = 'absolute';
-
         }, 50);
     };
 };
@@ -101,7 +95,7 @@ function goBack() {
     document.querySelector('.container').style.display = 'flex';
     document.getElementById('backButton').style.display = 'none';
     document.body.style.background = 'linear-gradient(135deg, #d3d3d3, #6e7f80)'; // Default Grey-Blue gradient
-  
+
     // Remove the expanded class from all bubbles and hide spider lines
     document.querySelectorAll('.bubble').forEach(bubble => {
         bubble.classList.remove('expanded');
@@ -109,13 +103,6 @@ function goBack() {
     document.getElementById('spider').style.display = 'none';
 };
 
-window.onload = function() {
-    // Now the page is fully loaded, and the script can be run
-    document.querySelectorAll('.bubble').forEach(bubble => {
-        bubble.addEventListener('click', function () {
-            zoomIn(bubble);
-        });
-    });
     
     // Ensure back button functionality
     document.getElementById('backButton').addEventListener('click', goBack);

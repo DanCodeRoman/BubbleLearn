@@ -1,9 +1,8 @@
-// Zoom in to a subject
+// Zoom in to a subject when clicked
 function zoomIn(subject) {
     const container = document.querySelector('.bubble-container');
     container.innerHTML = '';  // Clear existing bubbles
 
-    // Set topics based on the subject clicked
     let topics;
     if (subject === 'Math') {
         topics = ['PreCalc', 'Algebra', 'Geometry', 'Calculus'];
@@ -15,12 +14,12 @@ function zoomIn(subject) {
         topics = ['Mechanics', 'Electricity', 'Optics', 'Thermodynamics'];
     }
 
-    // Create a bubble for each topic
+    // Add new bubbles for the selected topic
     topics.forEach(topic => {
         const bubble = document.createElement('div');
         bubble.classList.add('bubble');
         bubble.textContent = topic;
-        bubble.onclick = () => zoomIn(topic);  // Recursive zoom for subtopics
+        bubble.onclick = () => zoomIn(topic);  // Click on a topic to zoom in further
         container.appendChild(bubble);
     });
 
@@ -28,13 +27,13 @@ function zoomIn(subject) {
     const backButton = document.getElementById('back-button');
     backButton.style.display = 'block';
 
-    // Add zoom effect by modifying the body class
+    // Apply zoom effect by modifying the body class
     document.body.classList.add('zoomed');
 }
 
 // Zoom out (back to main bubbles)
 function zoomOut() {
-    // Reset the container to the main bubbles
+    // Reset to the main bubbles (Math, Biology, etc.)
     const container = document.querySelector('.bubble-container');
     container.innerHTML = `
         <div class="bubble" onclick="zoomIn('Math')">Math</div>
@@ -47,6 +46,6 @@ function zoomOut() {
     const backButton = document.getElementById('back-button');
     backButton.style.display = 'none';
 
-    // Remove zoom effect
+    // Remove the zoom effect
     document.body.classList.remove('zoomed');
 }

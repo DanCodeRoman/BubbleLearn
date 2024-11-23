@@ -64,6 +64,7 @@ body {
     transform: scale(1.5); /* Larger size for the clicked bubble */
     font-size: 30px; /* Bigger text when expanded */
     position: absolute;     /* Absolute positioning for centering */
+    z-index: 5;
 }
 
 /* Spider lines container */
@@ -103,12 +104,41 @@ body {
     opacity: 0; /* Initially, subtopics are invisible */
     transition: opacity 0.7s ease;
 }
-
+/* Smooth transitions for all elements */
+.bubble, .subBubble, .line {
+    transition: all 0.3s ease;
+}
 /* Show subtopics when they appear */
 .subBubble.show {
     opacity: 1;
 }
-
+/* Positioning for subbubbles */
+.subBubble {
+    position: absolute; /* Positioned relative to the center bubble */
+    opacity: 0;         /* Hidden initially */
+    transition: opacity 0.5s ease; /* Smooth fade-in */
+}
+/* Home Page: Default gradient background */
+body {
+    background: linear-gradient(135deg, #d3d3d3, #6e7f80);
+}
+/* When the subbubble appears, make it visible */
+.subBubble.show {
+    opacity: 1;
+}
+/* Lines extending from the central bubble to the subbubbles */
+.line {
+    position: absolute;
+    background-color: black;
+    width: 2px;
+    height: 0; /* Line starts at height 0 */
+    transition: height 0.5s ease-in-out; /* Smooth animation for line height */
+}
+/* Spider lines animation */
+.spider .line {
+    height: 0;
+    opacity: 0;
+}
 /* Specific background color per subject */
 .mathBackground {
     background: linear-gradient(135deg, #b0b0b0, #ff4d4d); /* Grey Red */
@@ -140,6 +170,12 @@ body {
     height: 0;
     opacity: 0;
 }
+/* Styling for the subtopic circles */
+.subBubble {
+    font-size: 12px; /* Slightly smaller font size for subtopics */
+    padding: 5px;
+    text-align: center;
+}
 
 /* Ensure proper alignment of container */
 .container {
@@ -147,6 +183,10 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+/* Smooth background color transition */
+body {
+    transition: background 0.5s ease;
 }
 
 /* Add smooth transition for the subBubble positioning */

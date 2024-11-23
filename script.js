@@ -1,52 +1,74 @@
-// Zoom in to a subject
-function zoomIn(subject) {
-    const container = document.querySelector('.bubble-container');
-    container.innerHTML = '';  // Clear existing bubbles
+// Main bubble container
+const bubbleContainer = document.getElementById("bubble-container");
+// Back button
+const backButton = document.getElementById("back-button");
 
-    // Create a new set of bubbles based on the subject
-    let topics;
-    if (subject === 'Math') {
-        topics = ['PreCalc', 'Algebra', 'Geometry', 'Calculus'];
-    } else if (subject === 'Biology') {
-        topics = ['Cells', 'DNA', 'Ecology', 'Evolution'];
-    } else if (subject === 'Chemistry') {
-        topics = ['Organic Chemistry', 'Atoms', 'Chemical Reactions'];
-    } else if (subject === 'Physics') {
-        topics = ['Mechanics', 'Electricity', 'Optics', 'Thermodynamics'];
+// Data for topics and subtopics
+const topics = {
+    Math: ["PreCalc", "Algebra", "Geometry", "Calculus", "Statistics"],
+    Biology: ["Cells", "Genetics", "Ecology", "Anatomy", "Evolution"],
+    Chemistry: ["Organic", "Inorganic", "Physical", "Biochemistry", "Analytical"],
+    Physics: ["Mechanics", "Thermodynamics", "Optics", "Electromagnetism", "Quantum"],
+};
+
+// Stack to track navigation history
+let historyStack = [];
+
+// Event listener for clicking a bubble
+bubbleContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("bubble")) {
+        const topic = event.target.dataset.topic; // Get topic from data-topic
+        if (topics[topic]) {
+            historyStack.push(topic); // Save current state
+            loadSubtopics(topic); // Load subtopics
+        }
     }
+});
 
-    // Add new bubbles for the selected subject
-    topics.forEach(topic => {
-        const bubble = document.createElement('div');
-        bubble.classList.add('bubble');
-        bubble.textContent = topic;
-        bubble.onclick = () => zoomIn(topic);  // Zoom into next topic
-        container.appendChild(bubble);
+// Event listener for the back button
+backButton.addEventListener("click", () => {
+    historyStack.pop(); // Remove the current topic from history
+    const previousTopic = historyStack[historyStack.length - 1];
+    if (previousTopic) {
+        loadSubtopics(previousTopic); // Go back to the previous subtopics
+    } else {
+        loadMainTopics(); // Load the main topics
+    }
+});
+
+// Load main topics (initial view)
+function loadMainTopics() {
+    bubbleContainer.innerHTML = ""; // Clear existing bubbles
+    Object.keys(topics).forEach((topic) => {
+        const bubble = createBubble(topic, topic); // Use topic as data-topic
+        bubbleContainer.appendChild(bubble);
     });
-
-    // Add the back button
-    const backButton = document.getElementById('back-button');
-    backButton.style.display = 'block';  // Show the back button
-
-    // Apply zoom class to body
-    document.body.classList.add('zoomed');
+    backButton.hidden = true; // Hide back button
+    bubbleContainer.classList.remove("zoom-in"); // Reset zoom effect
 }
 
-// Zoom out (go back)
-function zoomOut() {
-    // Reset the content and return to main bubbles
-    const container = document.querySelector('.bubble-container');
-    container.innerHTML = `
-        <div class="bubble" onclick="zoomIn('Math')">Math</div>
-        <div class="bubble" onclick="zoomIn('Biology')">Biology</div>
-        <div class="bubble" onclick="zoomIn('Chemistry')">Chemistry</div>
-        <div class="bubble" onclick="zoomIn('Physics')">Physics</div>
-    `;
-    
-    // Hide the back button
-    const backButton = document.getElementById('back-button');
-    backButton.style.display = 'none';
-
-    // Remove the zoomed effect
-    document.body.classList.remove('zoomed');
+// Load subtopics for a given topic
+function loadSubtopics(topic) {
+    bubbleContainer.innerHTML = ""; // Clear existing bubbles
+    topics[topic].forEach((subtopic) => {
+        const bubble = createBubble(subtopic); // Subtopics don't need data-topic
+        bubble.classList.add("active"); // Mark as active for visibility
+        bubbleContainer.appendChild(bubble);
+    });
+    backButton.hidden = false; // Show back button
+    bubbleContainer.classList.add("zoom-in"); // Apply zoom effect
 }
+
+// Create a bubble element
+function createBubble(label, topic = null) {
+    const div = document.createElement("div");
+    div.className = "bubble";
+    div.textContent = label;
+    if (topic) {
+        div.dataset.topic = topic; // Assign data-topic for clickable bubbles
+    }
+    return div;
+}
+
+// Initial load
+loadMainTopics();

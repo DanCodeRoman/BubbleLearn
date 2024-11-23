@@ -1,73 +1,55 @@
-/* Reset default styling */
-* {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #f0f0f0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
 }
 
-/* Style for the container holding the bubbles */
-.bubble-container {
+.container {
     display: grid;
-    grid-template-columns: repeat(2, 200px);
+    grid-template-columns: repeat(5, 150px);
     grid-gap: 20px;
     justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
-/* Style for each bubble */
 .bubble {
     width: 150px;
     height: 150px;
-    background-color: white;
     border-radius: 50%;
-    border: 3px solid black;
+    background-color: white;
+    border: 2px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.3s ease;
 }
 
 .bubble:hover {
-    transform: scale(1.1); /* Makes the bubbles slightly grow when hovered */
+    transform: scale(1.1);
 }
 
-/* Style for the back button */
-#back-button {
+.backButton {
+    display: none;
     position: absolute;
     top: 20px;
     left: 20px;
-    background: transparent;
-    border: none;
-    font-size: 24px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
     cursor: pointer;
-    display: none; /* Hidden initially */
+    border: none;
+    border-radius: 5px;
 }
 
-/* When zoomed in, show more specific topics */
-.zoomed .bubble-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform: scale(1.5);  /* Zoom effect */
-}
-
-.zoomed .bubble {
-    font-size: 2rem;
-}
-
-.zoomed #back-button {
-    display: block; /* Show the back button when zoomed in */
+.bubble.expanded {
+    width: 200px;
+    height: 200px;
 }

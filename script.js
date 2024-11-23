@@ -1,4 +1,4 @@
-    // Topics for each subject (subtopics)
+// Topics for each subject (subtopics)
 const topics = {
     math: ["Algebra", "Calculus", "Geometry", "Statistics", "Trigonometry", "Linear Algebra", "Differential Equations", "Pre-Calculus", "Probability", "Mathematical Proofs"],
     chemistry: ["Organic Chemistry", "Inorganic Chemistry", "Physical Chemistry", "Biochemistry", "Analytical Chemistry", "Environmental Chemistry", "Thermodynamics", "Chemical Bonding", "Stoichiometry", "Atomic Theory"],
@@ -31,7 +31,8 @@ function zoomIn(bubble) {
         history: 'linear-gradient(135deg, #b0b0b0, #7e4d28)' // Grey Brown
     };
 
-    // Apply the background gradient for the clicked subject
+    // Apply the background gradient for the clicked subject with a smooth transition
+    document.body.style.transition = 'background 0.5s ease';
     document.body.style.background = backgrounds[subject];
 
     // Make the clicked bubble larger and position it in the center
@@ -40,7 +41,7 @@ function zoomIn(bubble) {
 
     // Create spider lines and sub-bubbles
     createSpiderLines(subject, bubble);
-};
+}
 
 // Center the clicked bubble on the page
 function centerBubble(bubble) {
@@ -105,7 +106,7 @@ function createSpiderLines(subject, bubble) {
             subBubble.style.opacity = 1;  // Make subBubble appear smoothly
         }, 50);
     };
-};
+}
 
 // Go back to the main page
 function goBack() {

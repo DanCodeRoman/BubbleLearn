@@ -46,7 +46,7 @@ function zoomIn(bubble) {
 function createSpiderLines(subject) {
     const spider = document.getElementById('spider');
     spider.style.display = 'block';  // Make the spider container visible
-    
+    spider.innerHTML = ''; // Clear any existing lines or bubbles
 
     const bubble = document.querySelector(`#${subject}`);
 
@@ -70,14 +70,14 @@ function createSpiderLines(subject) {
         // Position the line and subBubble using angle and trigonometry
         const angleRad = angle * (Math.PI / 180);
         const radius = 200;  // Distance from center
-        const x = 200 * Math.cos(angleRad);
-        const y = 200 * Math.sin(angleRad);
+        const x = radius * Math.cos(angleRad);  // X position from center
+        const y = radius * Math.sin(angleRad);  // Y position from center
 
         subBubble.style.position = 'absolute';
         subBubble.style.left = `calc(${bubbleCenterX + x - 50}px)`; // Subtract half the size of subBubble to center it
         subBubble.style.top = `calc(${bubbleCenterY + y - 50}px)`; // Subtract half the size of subBubble to center it
         
-
+        line.style.transformOrigin = "0 100%";
         line.style.transform = `rotate(${angle}deg)`;
         subBubble.style.transform = `translate(${x}px, ${y}px)`;
         line.style.transition = 'height 0.5s ease-in-out, opacity 0.5s ease';
